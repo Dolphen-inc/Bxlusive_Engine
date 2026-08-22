@@ -1,0 +1,20 @@
+{
+  "name": "bxlusive",
+  "version": "1.0.0",
+  "description": "High-performance ChaCha20-Poly1305 AEAD cryptography engine powered by C++ WebAssembly",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "cryptography",
+    "chacha20",
+    "poly1305",
+    "aead",
+    "wasm",
+    "security"
+  ],
+  "author": "Dolphin-Inc",
+  "license": "MIT"
+}
