@@ -1,18 +1,27 @@
 from setuptools import setup, find_packages
-from pybind11.setup_helpers import PyBind11Extension, build_ext
 
-# Define the C++ extension module
-ext_modules = [
-    PyBind11Extension(
-        "Bxlusive.bxlusive_core",  # Compiles into Bxlusive package namespace
-        [
-            "csrc/chacha.cpp",
-            "csrc/poly1305.cpp",
-            "csrc/bindings.cpp"
-        ],
-        cxx_std=14,  # Standard C++14 for support with 128-bit types and modern headers
-    ),
-]
+# Safely try to import pybind11 helpers for the build phase
+try:
+    from pybind11.setup_helpers import PyBind11Extension, build_ext
+    has_pybind11 = True
+except ImportError:
+    has_pybind11 = False
+    PyBind11Extension = object  # Dummy fallback for metadata inspection
+    build_ext = object
+
+ext_modules = []
+if has_pybind11:
+    ext_modules = [
+        PyBind11Extension(
+            "Bxlusive.bxlusive_core",
+            [
+                "csrc/chacha.cpp",
+                "csrc/poly1305.cpp",
+                "csrc/bindings.cpp"
+            ],
+            cxx_std=14,
+        ),
+    ]
 
 setup(
     name="Bxlusive",
@@ -22,10 +31,10 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(),
     ext_modules=ext_modules,
-    cmdclass={"build_ext": build_ext},
+    cmdclass={"build_ext": build_ext} if has_pybind11 else {},
     python_requires=">=3.8",
     install_requires=[
-        "pybind11>=2.6.0"  # Ensures the build machine has pybind11 headers available
+        "pybind11>=2.6.0"
     ],
     zip_safe=False,
 )
