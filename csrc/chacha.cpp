@@ -96,3 +96,18 @@ public:
         return output;
     }
 };
+
+
+
+
+extern "C" {
+    std::vector<uint8_t> chacha20_process(
+        const std::vector<uint8_t>& input, 
+        const std::vector<uint8_t>& key, 
+        const std::vector<uint8_t>& nonce, 
+        uint32_t initial_counter
+    ) {
+        return ChaCha20Engine::process(input, key, nonce, initial_counter);
+    }
+}
+
