@@ -17,7 +17,7 @@ ext_modules = [
 
 setup(
     name="bxl-cryptography",
-    version="1.0.5",  # Bump version to 1.0.5
+    version="1.0.0.1",  # Bump version to 1.0.5
     description="High-performance custom zero-dependency cryptography library",
     long_description=open("README.md", encoding="utf-8").read() if "README.md" in __import__("os").listdir(".") else "",
     long_description_content_type="text/markdown",
