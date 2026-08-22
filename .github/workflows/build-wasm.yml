@@ -1,0 +1,27 @@
+name: Build WebAssembly
+
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+jobs:
+  build-wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Emscripten Environment
+        uses: emscripten-core/setup-emsdk@v15
+        with:
+          version: 'latest'
+
+      - name: Compile C++ to WebAssembly
+        run: |
+          make wasm
+
+      - name: Verify Compiled Files
+        run: |
+          ls -la js/
