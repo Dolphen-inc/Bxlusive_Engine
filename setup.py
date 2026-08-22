@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-from pybind11.setup_helpers import PyBind11Extension, build_ext
+from pybind11.setup_helpers import Pybind11Extension, build_ext 
 
 ext_modules = [
     PyBind11Extension(
