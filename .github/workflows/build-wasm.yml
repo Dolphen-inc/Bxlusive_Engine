@@ -24,4 +24,4 @@ jobs:
 
       - name: Verify Compiled Files
         run: |
-          ls -la js/
+          ls -la JS/
