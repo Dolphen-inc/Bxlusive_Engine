@@ -106,3 +106,13 @@ public:
     // Note: Assumes ChaCha20Engine is available from chacha.cpp
     // static SealedPackage encrypt_and_seal(const std::vector<uint8_t>& key, const std::vector<uint8_t>& nonce, const std::vector<uint8_t>& plaintext, const std::vector<uint8_t>& aad = {}) { ... }
 };
+
+
+std::vector<uint8_t> poly1305_create_tag(
+    const std::vector<uint8_t>& msg, 
+    const std::vector<uint8_t>& key
+) {
+    // Call your actual Poly1305 function or class method here
+    return Poly1305Engine::create_tag(msg, key); // adjust to match your class name
+}
+
